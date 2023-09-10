@@ -1,0 +1,36 @@
+> Tag: !ban,
+> With function: $banID[],
+> Main function: $banID[],
+> All codes: 3,
+> Code: 1,
+$nomention
+$onlyPerms[admin;You need the admim permission to use that command!]
+$argsCheck[>1;Please provide a `user`. Syntax: `!ban (user) <reason>`]
+$onlyIf[$findUser[$message[1];no]!=;Failed to find user!]
+$onlyIf[$authorID!=$findUser[$message[1];no];You can't ban yourself]
+$onlyIf[$rolePosition[$highestRole[$authorID]]>=$rolePosition[$highestRole[$findUser[$message[1];no]]];You can't ban a user whose role is higher than yours]
+$banID[$replaceText[$message;$message[1];;1];$findUser[$message[1];no]]
+$title[Ban!]
+$description[Staff: <@$authorID>
+User: <@$findUser[$message[1];no]>
+Reason: $replaceText[$message;$message[1];;1]]
+> Code: 2,
+$nomention
+$banID[Without reason;$findUser[$message]]
+> Code: 3,
+$nomention
+$banID[Without reason;$findUser[$message]]
+$sendMessage[**<@$findUser[$message]>** was banned!]
+> With function: $ban[],
+> Main function: $ban[],
+> All codes: 2,
+> Code: 1,
+$nomention
+$ban[$noMentionMessage]
+**<@$mentioned[1]>** was banned! Reason: `$noMentionMessage`
+> Code: 2,
+$nomention
+$onlyPerms[admin;You need the admim permission to use that command!]
+$argsCheck[>1;Please provide a `user`. Syntax: `!ban (user) <reason>`]
+$ban[$noMentionMessage]
+**<@$mentioned[1]>** was banned! Reason: `$noMentionMessage`
